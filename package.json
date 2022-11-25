@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "SET export NODE_ENV=production && next build",
+    "build": "export NODE_ENV=production && next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write **/**.{css,js,json,ts,tsx}"
