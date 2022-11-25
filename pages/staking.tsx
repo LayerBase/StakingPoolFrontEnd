@@ -1,11 +1,10 @@
 import Head from 'next/head';
 import React, { useState } from 'react';
-import { RegularStakingPools, CreateNewStakingPool, PersonalPoolsAndEarnings, SpecialStakingPools } from '../routes/staking';
+import { RegularStakingPools, CreateNewStakingPool, PersonalPoolsAndEarnings } from '../routes/staking';
 
 enum Subroutes {
   REGULAR_POOLS,
   CREATE_NEW_POOL,
-  SPECIAL_POOLS,
   MY_POOLS
 }
 
@@ -14,7 +13,7 @@ export default function Staking() {
   return (
     <>
       <Head>
-        <title>Vefi DApps | Stake</title>
+        <title>Lunagens | Staking</title>
       </Head>
       <div className="flex flex-col justify-evenly gap-4 items-start w-full h-full bg-radialed overflow-auto hidden-scrollbar">
         <div className="flex flex-col justify-evenly gap-1 px-5">
@@ -29,12 +28,6 @@ export default function Staking() {
                 onClick={() => setActiveRoute(Subroutes.REGULAR_POOLS)}
               >
                 Regular Staking Pools
-              </button>
-              <button
-                className={activeRoute === Subroutes.SPECIAL_POOLS ? 'border-b-[1px] border-[#0cedfc]' : undefined}
-                onClick={() => setActiveRoute(Subroutes.SPECIAL_POOLS)}
-              >
-                Special Staking Pools
               </button>
               <button
                 className={activeRoute === Subroutes.CREATE_NEW_POOL ? 'border-b-[1px] border-[#0cedfc]' : undefined}
@@ -59,7 +52,6 @@ export default function Staking() {
             {activeRoute === Subroutes.REGULAR_POOLS && <RegularStakingPools />}
             {activeRoute === Subroutes.CREATE_NEW_POOL && <CreateNewStakingPool />}
             {activeRoute === Subroutes.MY_POOLS && <PersonalPoolsAndEarnings />}
-            {activeRoute === Subroutes.SPECIAL_POOLS && <SpecialStakingPools />}
           </div>
         </div>
       </div>

@@ -98,7 +98,7 @@ const AddLiquidityRoute = ({ routeChange }: any) => {
   const [isSecondTokensListModalVisible, setIsSecondTokensListModalVisible] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { tokensListing } = useAPIContext();
+  // const { tokensListing } = useAPIContext();
   const { chainId, active, library, account } = useWeb3Context();
   const { txDeadlineInMins, gasPrice, playSounds } = useDEXSettingsContext();
   const [firstSelectedToken, setFirstSelectedToken] = useState<ListingModel>({} as ListingModel);
@@ -233,12 +233,12 @@ const AddLiquidityRoute = ({ routeChange }: any) => {
     val2
   ]);
 
-  useEffect(() => {
-    if (tokensListing.length >= 2) {
-      setFirstSelectedToken(tokensListing[0]);
-      setSecondSelectedToken(tokensListing[1]);
-    }
-  }, [tokensListing]);
+  // useEffect(() => {
+  //   if (tokensListing.length >= 2) {
+  //     setFirstSelectedToken(tokensListing[0]);
+  //     setSecondSelectedToken(tokensListing[1]);
+  //   }
+  // }, [tokensListing]);
 
   useEffect(() => {
     if (outputAmount1 > 0) setVal2(outputAmount1);
@@ -395,22 +395,22 @@ const FindOtherLPRoute = ({ routeChange }: any) => {
   const [isFirstTokensListModalVisible, setIsFirstTokensListModalVisible] = useState<boolean>(false);
   const [isSecondTokensListModalVisible, setIsSecondTokensListModalVisible] = useState<boolean>(false);
 
-  const { tokensListing, importPool, importedPools } = useAPIContext();
+  // const { tokensListing, importPool, importedPools } = useAPIContext();
   const { chainId } = useWeb3Context();
   const { pair, error: pairError } = computePair(firstSelectedToken, secondSelectedToken, chainId || 97);
 
   const addToPools = useCallback(() => {
     setIsImportLoading(true);
-    importPool(pair);
+    // importPool(pair);
     setIsImportLoading(false);
   }, [pair]);
 
-  useEffect(() => {
-    if (tokensListing.length >= 2) {
-      setFirstSelectedToken(tokensListing[0]);
-      setSecondSelectedToken(tokensListing[1]);
-    }
-  }, [tokensListing]);
+  // useEffect(() => {
+  //   if (tokensListing.length >= 2) {
+  //     setFirstSelectedToken(tokensListing[0]);
+  //     setSecondSelectedToken(tokensListing[1]);
+  //   }
+  // }, [tokensListing]);
   return (
     <div className="bg-[#000000]/50 border-[#ffeb82] border-[1px] rounded-[20px] flex justify-center items-center py-[19px] w-full md:w-1/3 md:max-h-[600px] font-Montserrat">
       <div className="flex flex-col justify-evenly items-center w-full gap-5">
@@ -454,7 +454,7 @@ const FindOtherLPRoute = ({ routeChange }: any) => {
             </div>
             <FiChevronDown />
           </button>
-          <div className="flex w-full justify-center items-center">
+          {/* <div className="flex w-full justify-center items-center">
             {!!pairError ? (
               <span className="text-[red]/50">{pairError.message}</span>
             ) : (
@@ -468,7 +468,7 @@ const FindOtherLPRoute = ({ routeChange }: any) => {
                 <span>Import</span>
               </button>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
       <SwapSettingsModal isOpen={isSettingsModalVisible} onClose={() => setIsSettingsModalVisible(false)} />

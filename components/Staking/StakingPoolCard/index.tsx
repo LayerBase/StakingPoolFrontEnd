@@ -193,7 +193,7 @@ export default function StakingPoolCard({ pool, poolType }: IStakingPoolCardProp
                 <span>{poolDetails.tokenASymbol}</span>
               </label>
 
-              {poolDetails.tokenB.toLowerCase() !== USDB.toLowerCase() && (
+              {poolDetails.tokenB.toLowerCase() !== USDB?.toLowerCase() && (
                 <label
                   className="flex flex-col justify-center items-center gap-1 cursor-pointer"
                   htmlFor={`${pool}-modal`}

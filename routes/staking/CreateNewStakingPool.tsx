@@ -5,11 +5,11 @@ import { Interface } from '@ethersproject/abi';
 import { Web3Provider } from '@ethersproject/providers';
 import { ToastContainer, toast } from 'react-toastify';
 import { abi as actionsAbi } from 'vefi-token-launchpad-staking/artifacts/contracts/StakingPoolActions.sol/StakingPoolActions.json';
+import { formatEther } from '@ethersproject/units';
 import stakingPoolActions from '../../assets/pool_actions.json';
 import chains from '../../assets/chains.json';
 import { useWeb3Context } from '../../contexts/web3';
 import rpcCall from '../../api/rpc';
-import { formatEther } from '@ethersproject/units';
 
 export default function CreateNewStakingPool() {
   const { chainId, library } = useWeb3Context();
@@ -86,7 +86,7 @@ export default function CreateNewStakingPool() {
 
   return (
     <div className="flex justify-center items-center w-full px-4 py-4">
-      <div className="card rounded-[20px] bg-[#000]/50 shadow-xl font-Montserrat overflow-auto hidden-scrollbar w-full md:w-2/6 backdrop-blur-[60px] py-4">
+      <div className="card rounded-[20px] bg-[#000]/50 shadow-xl font-Montserrat overflow-auto hidden-scrollbar w-full backdrop-blur-[60px] py-4">
         <form onSubmit={submitForm} className="card-body w-full font-poppins">
           <span className="card-title text-white font-[800]">Create New Staking Pool</span>
           <div className="flex flex-col w-full justify-start items-start gap-1">

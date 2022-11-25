@@ -6,16 +6,16 @@ import { useAPIContext } from '../../contexts/api';
 import Empty from '../../components/Empty';
 
 export default function SpecialStakingPools() {
-  const { specialStakingPools, fetchSpecialPools } = useAPIContext();
+  // const { specialStakingPools, fetchSpecialPools } = useAPIContext();
   const [page, setPage] = useState<number>(1);
 
-  useEffect(() => {
-    fetchSpecialPools(page);
-  }, [fetchSpecialPools, page]);
+  // useEffect(() => {
+  //   fetchSpecialPools(page);
+  // }, [fetchSpecialPools, page]);
 
   return (
     <div className="flex flex-col gap-2 justify-center items-center w-full">
-      <div className="flex flex-col md:flex-row justify-center items-center gap-3 flex-nowrap md:flex-wrap w-full flex-grow px-[4px]">
+      {/* <div className="flex flex-col md:flex-row justify-center items-center gap-3 flex-nowrap md:flex-wrap w-full flex-grow px-[4px]">
         {specialStakingPools.totalItems === 0 ? (
           <Empty />
         ) : (
@@ -27,8 +27,8 @@ export default function SpecialStakingPools() {
             ))}
           </>
         )}
-      </div>
-      <div className="flex justify-center items-center gap-2 text-white/70">
+      </div> */}
+      {/* <div className="flex justify-center items-center gap-2 text-white/70">
         <button onClick={() => setPage((p) => p - 1)} disabled={page === 1} className="bg-transparent">
           <FiArrowLeft />
         </button>
@@ -38,7 +38,7 @@ export default function SpecialStakingPools() {
         <button onClick={() => setPage((p) => p + 1)} disabled={page >= Math.ceil(specialStakingPools.totalItems / 20)} className="bg-transparent">
           <FiArrowRight />
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

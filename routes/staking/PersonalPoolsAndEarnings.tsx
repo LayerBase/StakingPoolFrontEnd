@@ -54,7 +54,7 @@ export default function PersonalPoolsAndEarnings() {
           <div className="table w-full border-separate bg-transparent overflow-auto border-spacing-y-[20px] border-spacing-x-[0px]">
             <div className="table-header-group w-full h-[50px]">
               <div className="table-row text-[#fff] w-full font-[800] uppercase gap-3">
-                <div className="hidden md:table-cell text-left">Pool</div>
+                <div className="hidden md:table-cell text-center">Pool</div>
                 <div className="hidden md:table-cell text-center">Date</div>
                 <div className="table-cell text-center">Amount</div>
                 <div className="table-cell text-center">Reward</div>

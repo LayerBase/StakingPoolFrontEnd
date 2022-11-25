@@ -18,39 +18,36 @@ type Web3ContextType = {
   balance?: string;
   connectInjected: () => void;
   connectWalletConnect: () => void;
-  connectTorus: () => void;
-  connectOkxWallet: () => void;
+  // connectTorus: () => void;
+  // connectOkxWallet: () => void;
   disconnectWallet: () => void;
 };
 
 const Web3Context = createContext<Web3ContextType>({} as Web3ContextType);
 
 const injectedConnector = new InjectedConnector({
-  supportedChainIds: [56, 137, 32520, 1024, 43114, 40, 86, 97, 311, 888, 66]
+  supportedChainIds: [1, 56, 2000, 32520]
 });
 
-const okxwalletConnector = new OkxWalletConnector({
-  supportedChainIds: [56, 137, 32520, 1024, 43114, 40, 86, 97, 311, 888, 66]
-});
+// const okxwalletConnector = new OkxWalletConnector({
+//   supportedChainIds: [56, 137, 32520, 1024, 43114, 40, 86, 97, 311, 888, 66]
+// });
 
 const walletConnectConnector = new WalletConnectConnector({
   qrcode: true,
   bridge: 'https://bridge.walletconnect.org',
-  supportedChainIds: [56, 137, 32520, 1024, 43114, 40, 86, 97, 311, 888, 66],
+  supportedChainIds: [1, 56, 2000, 32520],
   rpc: {
+    1: chains[1].rpcUrl,
     56: chains[56].rpcUrl,
     32520: chains[32520].rpcUrl,
-    86: chains[86].rpcUrl,
-    311: chains[311].rpcUrl,
-    97: chains[97].rpcUrl,
-    888: chains[888].rpcUrl,
-    66: chains[66].rpcUrl
+    2000: chains[2000].rpcUrl
   }
 });
 
-const torusConnector = new TorusConnector({
-  chainId: 56
-});
+// const torusConnector = new TorusConnector({
+//   chainId: 56
+// });
 
 export const Web3ContextProvider = ({ children }: any) => {
   const { library, account, activate, deactivate, active, chainId, error, setError } = useWeb3React<Web3>();
@@ -81,21 +78,21 @@ export const Web3ContextProvider = ({ children }: any) => {
       .catch(setError);
   }, []);
 
-  const connectTorus = useCallback(() => {
-    activate(torusConnector, setError, true)
-      .then(() => {
-        console.log('Torus connected!');
-      })
-      .catch(setError);
-  }, []);
+  // const connectTorus = useCallback(() => {
+  //   activate(torusConnector, setError, true)
+  //     .then(() => {
+  //       console.log('Torus connected!');
+  //     })
+  //     .catch(setError);
+  // }, []);
 
-  const connectOkxWallet = useCallback(() => {
-    activate(okxwalletConnector, setError, true)
-      .then(() => {
-        console.log('Okx Connected!');
-      })
-      .catch(setError);
-  }, []);
+  // const connectOkxWallet = useCallback(() => {
+  //   activate(okxwalletConnector, setError, true)
+  //     .then(() => {
+  //       console.log('Okx Connected!');
+  //     })
+  //     .catch(setError);
+  // }, []);
 
   const disconnectWallet = useCallback(() => {
     if (active) deactivate();
@@ -113,17 +110,17 @@ export const Web3ContextProvider = ({ children }: any) => {
     });
   }, []);
 
-  useEffect(() => {
-    okxwalletConnector.isAuthorized().then((isAuth) => {
-      if (isAuth) {
-        activate(okxwalletConnector, setError, true)
-          .then(() => {
-            console.log('Connected!');
-          })
-          .catch(setError);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   okxwalletConnector.isAuthorized().then((isAuth) => {
+  //     if (isAuth) {
+  //       activate(okxwalletConnector, setError, true)
+  //         .then(() => {
+  //           console.log('Connected!');
+  //         })
+  //         .catch(setError);
+  //     }
+  //   });
+  // }, []);
 
   useEffect(() => {
     if (active && !!account) {
@@ -140,8 +137,8 @@ export const Web3ContextProvider = ({ children }: any) => {
         active,
         connectInjected,
         connectWalletConnect,
-        connectTorus,
-        connectOkxWallet,
+        // connectTorus,
+        // connectOkxWallet,
         error,
         disconnectWallet,
         chainId

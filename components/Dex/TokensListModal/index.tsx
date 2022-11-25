@@ -19,7 +19,7 @@ type ITokensListModalProps = {
 };
 
 export default function TokensListModal({ onClose, isVisible, onTokenSelected, selectedTokens }: ITokensListModalProps) {
-  const { tokensListing, importToken } = useAPIContext();
+  // const { tokensListing, importToken } = useAPIContext();
   const { chainId } = useWeb3Context();
   const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -28,13 +28,13 @@ export default function TokensListModal({ onClose, isVisible, onTokenSelected, s
     try {
       setIsLoading(true);
       const token = await Fetcher.fetchTokenData(chainId || 97, searchValue);
-      importToken({
-        name: token.name as string,
-        logoURI: '/images/placeholder_image.svg',
-        decimals: token.decimals,
-        address: token.address,
-        symbol: token.symbol as string
-      });
+      // importToken({
+      //   name: token.name as string,
+      //   logoURI: '/images/placeholder_image.svg',
+      //   decimals: token.decimals,
+      //   address: token.address,
+      //   symbol: token.symbol as string
+      // });
       setIsLoading(false);
       toast(`Successfully imported token ${token.symbol}`, { type: 'success' });
     } catch (error: any) {
@@ -83,7 +83,7 @@ export default function TokensListModal({ onClose, isVisible, onTokenSelected, s
                       </div>
                     </div>
 
-                    <div className="flex flex-col justify-start items-start w-full overflow-auto max-h-[500px]">
+                    {/* <div className="flex flex-col justify-start items-start w-full overflow-auto max-h-[500px]">
                       {searchValue.replace(/\s/g, '').length > 0 &&
                       _.filter(
                         tokensListing,
@@ -137,7 +137,7 @@ export default function TokensListModal({ onClose, isVisible, onTokenSelected, s
                           )}
                         </div>
                       )}
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

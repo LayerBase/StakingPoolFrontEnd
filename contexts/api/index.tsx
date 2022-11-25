@@ -12,15 +12,15 @@ import { TokenSaleItemModel } from '../../api/models/launchpad';
 import { fetchAllPublicSaleItems, fetchAllPrivateSaleItems } from '../../api/launchpad';
 
 type APIContextType = {
-  tokensListing: Array<ListingModel>;
+  // tokensListing: Array<ListingModel>;
   stakingPools: {
     items: Array<string>;
     totalItems: number;
   };
-  specialStakingPools: {
-    items: Array<string>;
-    totalItems: number;
-  };
+  // specialStakingPools: {
+  //   items: Array<string>;
+  //   totalItems: number;
+  // };
   accountStakingPools: {
     totalItems: number;
     items: Array<string>;
@@ -35,22 +35,22 @@ type APIContextType = {
     totalItems: number;
     items: Array<StakeEventModel>;
   };
-  multiSigsByAccount: {
-    totalItems: number;
-    items: Array<string>;
-  };
-  publicSaleItems: {
-    totalItems: number;
-    items: Array<TokenSaleItemModel>;
-  };
-  privateSaleItems: {
-    totalItems: number;
-    items: Array<TokenSaleItemModel>;
-  };
-  importedMultiSigs: { [chainId: number]: Array<string> };
-  importMultiSigs: (addresses: Array<string>) => void;
+  // multiSigsByAccount: {
+  //   totalItems: number;
+  //   items: Array<string>;
+  // };
+  // publicSaleItems: {
+  //   totalItems: number;
+  //   items: Array<TokenSaleItemModel>;
+  // };
+  // privateSaleItems: {
+  //   totalItems: number;
+  //   items: Array<TokenSaleItemModel>;
+  // };
+  // importedMultiSigs: { [chainId: number]: Array<string> };
+  // importMultiSigs: (addresses: Array<string>) => void;
   topPairs: Array<string>;
-  importToken: (model: ListingModel) => void;
+  // importToken: (model: ListingModel) => void;
   importPool: (pool: string) => void;
   events: {
     type: 'all' | 'swap' | 'burn' | 'mint';
@@ -61,17 +61,17 @@ type APIContextType = {
   fetchPools: (page: number) => void;
   fetchAccountPools: (page: number) => void;
   fetchStakesByAccount: (page: number) => void;
-  fetchMultiSigsByAccount: (page: number) => void;
-  fetchSpecialPools: (page: number) => void;
-  fetchPublicTokenSaleItems: (page: number) => void;
-  fetchPrivateTokenSaleItems: (page: number) => void;
+  // fetchMultiSigsByAccount: (page: number) => void;
+  // fetchSpecialPools: (page: number) => void;
+  // fetchPublicTokenSaleItems: (page: number) => void;
+  // fetchPrivateTokenSaleItems: (page: number) => void;
 };
 
 const APIContext = createContext({} as APIContextType);
 
 export const APIContextProvider = ({ children }: any) => {
   const { chainId, active, account } = useWeb3Context();
-  const [tokensListing, setTokensListing] = useState<Array<ListingModel>>([]);
+  // const [tokensListing, setTokensListing] = useState<Array<ListingModel>>([]);
   const [stakingPools, setStakingPools] = useState<{
     totalItems: number;
     items: Array<string>;
@@ -120,9 +120,9 @@ export const APIContextProvider = ({ children }: any) => {
     items: []
   });
 
-  const importToken = useCallback((model: ListingModel) => {
-    if (!_.includes(tokensListing, model)) setTokensListing((models) => [...models, model]);
-  }, []);
+  // const importToken = useCallback((model: ListingModel) => {
+  //   if (!_.includes(tokensListing, model)) setTokensListing((models) => [...models, model]);
+  // }, []);
 
   const eventsDataUpdate = useCallback(
     (page: number, t: 'all' | 'swap' | 'burn' | 'mint') => {
@@ -237,10 +237,10 @@ export const APIContextProvider = ({ children }: any) => {
   useEffect(() => {
     (async () => {
       if (!!account && !!chainId) {
-        const listing = await fetchListing(chainId || 97);
+        // const listing = await fetchListing(chainId || 97);
         const pairs = await fetchTopPairs(chainId || 97);
 
-        setTokensListing(listing);
+        // setTokensListing(listing);
         setTopPairs(pairs);
         eventsDataUpdate(1, 'all');
         fetchPools(1);
@@ -251,11 +251,11 @@ export const APIContextProvider = ({ children }: any) => {
     })();
   }, [chainId, account]);
 
-  useEffect(() => {
-    if (tokensListing.length > 0) {
-      setTokensListingAsDictionary(convertListingToDictionary(tokensListing));
-    }
-  }, [tokensListing]);
+  // useEffect(() => {
+  //   if (tokensListing.length > 0) {
+  //     setTokensListingAsDictionary(convertListingToDictionary(tokensListing));
+  //   }
+  // }, [tokensListing]);
 
   useEffect(() => {
     if (importedPools) {
@@ -284,10 +284,10 @@ export const APIContextProvider = ({ children }: any) => {
   return (
     <APIContext.Provider
       value={{
-        tokensListing,
+        // tokensListing,
         tokensListingAsDictionary,
         liquidityPoolsForUser,
-        importToken,
+        // importToken,
         importPool,
         importedPools,
         topPairs,
@@ -299,16 +299,16 @@ export const APIContextProvider = ({ children }: any) => {
         fetchAccountPools,
         stakesByAccount,
         fetchStakesByAccount,
-        multiSigsByAccount,
-        fetchMultiSigsByAccount,
-        importedMultiSigs,
-        importMultiSigs,
-        specialStakingPools,
-        fetchSpecialPools,
-        publicSaleItems,
-        privateSaleItems,
-        fetchPrivateTokenSaleItems,
-        fetchPublicTokenSaleItems
+        // multiSigsByAccount,
+        // fetchMultiSigsByAccount,
+        // importedMultiSigs,
+        // importMultiSigs,
+        // specialStakingPools,
+        // fetchSpecialPools,
+        // publicSaleItems,
+        // privateSaleItems,
+        // fetchPrivateTokenSaleItems,
+        // fetchPublicTokenSaleItems
       }}
     >
       {children}

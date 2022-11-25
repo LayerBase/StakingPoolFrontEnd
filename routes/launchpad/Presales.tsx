@@ -32,30 +32,30 @@ enum Subroutes {
 }
 
 const AllSalesRoute = ({ onClick, rank = 'all' }: any) => {
-  const { publicSaleItems, fetchPublicTokenSaleItems } = useAPIContext();
+  // const { publicSaleItems, fetchPublicTokenSaleItems } = useAPIContext();
   const [page, setPage] = useState<number>(1);
 
-  useEffect(() => fetchPublicTokenSaleItems(page), [fetchPublicTokenSaleItems, page]);
+  // useEffect(() => fetchPublicTokenSaleItems(page), [fetchPublicTokenSaleItems, page]);
   return (
     <div className="flex flex-col justify-center items-center gap-3">
-      <div className="flex flex-col md:flex-row justify-center items-center gap-2 flex-wrap">
+      {/* <div className="flex flex-col md:flex-row justify-center items-center gap-2 flex-wrap">
         {_.map(
           publicSaleItems.items.filter((model) => (rank === 'all' ? !!model : model.rank === rank)),
           (data, index) => (
             <TokenSaleItemCard key={index} data={data} saleType="public" onClick={(val) => onClick(val)} />
           )
         )}
-      </div>
+      </div> */}
       <div className="flex justify-center items-center gap-2 text-white/70">
         <button onClick={() => setPage((p) => p - 1)} disabled={page === 1} className="bg-transparent">
           <FiArrowLeft />
         </button>
-        <span>
+        {/* <span>
           Page {page} of {Math.ceil(publicSaleItems.totalItems / 20)}
-        </span>
-        <button onClick={() => setPage((p) => p + 1)} disabled={page >= Math.ceil(publicSaleItems.totalItems / 20)} className="bg-transparent">
+        </span> */}
+        {/* <button onClick={() => setPage((p) => p + 1)} disabled={page >= Math.ceil(publicSaleItems.totalItems / 20)} className="bg-transparent">
           <FiArrowRight />
-        </button>
+        </button> */}
       </div>
     </div>
   );
